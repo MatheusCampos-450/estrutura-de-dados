@@ -1,0 +1,59 @@
+Na última aula aprendemos listas lineares sequenciais:
+  - utilizamos um arranjo para armazenar nossos registros;
+  - A inserção de registros era feita na posição indicada pelo usuário.
+
+
+Nesta aula abordaremos dois aspectos:
+  - Otimização da busca por elementos;
+  - Mudança na ordem de inserção dos elementos.
+  - Busca binaria;
+
+
+
+Busca por elementos
+
+O usuário diz qual elemento é buscado e a função retorna a posição desse elemento:
+  - As chaves dos elementos não estão em ordem crescente;
+  - Se o elemento não existir a função retorna -1;
+
+
+
+int buscaSequencial(LISTA* l, TIPOCHAVE ch) {
+  int i = 0;
+  while (i < l->nroELem) {
+    if(ch == l->A[i].chave) return i;
+    else i++;
+  }
+  return -1;
+}
+
+
+Ideia: ao invés de fazer duas comparações por interação, seria possivel fazer só uma?
+   - Precisamos sempre comparar a chave do elemento atual com a chave do elemento buscado;
+   - Mas como garantir que não iremos passar do último elemento?
+   - Garantindo que a chave buscada será encontrada!
+
+Criação de um elemento sentinela:
+  - Elemento extra (um registro) adicionado á lista para auxiliar alguma operação;
+  - Será inserido no final da lista (após o último elemento válido) durante as buscas;
+  - Conterá a chave do elemento buscado;
+
+
+Há apenas um problema:
+  - Se a lista já estiver cheia, não haverá espaço para criar o sentinela;
+  - O que fazer?
+  - Criamos a lista com uma posição extra (um registro a mais) para garantir que haverá espaço para o sentinela
+  - Essa posição extra nunca terá um registro valído
+
+
+Mas a busca binaria não é mais eficiente?
+  - Sim, porem ela necessita que as chaves dos elementos estejam ordenadas;
+  - Para isso, precisaremos mudar nossa função de inserção de elementos;
+  - A função de inserção seguirá a lógica do insertion sort;
+
+
+Com a ordenação dos elementos pela chave:
+  - A busca ficou mais eficiente (busca binaria);
+  - Não precisamos do sentinela;
+  - O que acontece com a exclusão?
+  
